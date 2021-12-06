@@ -50,3 +50,9 @@ class ArbitrageAlert:
             except Exception as e:
                 print(e)
                 print("Wird neu gestartet...")
+
+
+
+token = "1910759993:AAGpzGdVPm3af7ld0VfmGKQEDncRFuk-fTA"
+alert_1 = ArbitrageAlert("kucoin", "defichain_dex", "DFI-USDT", "USDT-DFI", 0.2, 14400, token)
+alert_2 = ArbitrageAlert("kucoin", "defichain_dex", "DFI-USDT", "USDC-DFI", 0.2, 14400, token)
