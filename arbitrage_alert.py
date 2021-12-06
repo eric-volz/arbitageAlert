@@ -33,8 +33,6 @@ class ArbitrageAlert:
                 price_difference = round(price_1 - price_2, 2)
                 percent_difference = round(1 - price_2 / price_1, 2)
 
-                print(percent_difference)
-
                 if percent_difference >= self.arbitrage_rate:
                     if not self.suspend_until:
                         self.suspend_until = dt.datetime.utcnow() + dt.timedelta(seconds=self.interval)
@@ -44,8 +42,9 @@ class ArbitrageAlert:
                               f"{price_difference}$ - {percent_difference * 100}%"
                         bot.sendMessage(msg)
 
-                if self.suspend_until <= dt.datetime.utcnow():
-                    self.suspend_until = None
+                if self.suspend_until:
+                    if self.suspend_until <= dt.datetime.utcnow():
+                        self.suspend_until = None
 
                 time.sleep(1)
             except Exception as e:
